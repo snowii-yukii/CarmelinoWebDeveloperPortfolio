@@ -75,11 +75,8 @@ export default function Hero() {
           </a>
 
           <a
-            href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              alert("Resume download triggered (simulated placeholder).");
-            }}
+            href="/resume1.0.1.pdf"
+            download="Carmelino_Jadulco_Resume.pdf"
             className="flex items-center justify-center gap-2 px-6 py-3 text-slate-400 hover:text-white font-semibold text-sm transition-colors w-full sm:w-auto cursor-pointer"
           >
             <Download className="h-4 w-4" />
