@@ -81,7 +81,7 @@ export default function Contact() {
     { name: "Email", value: "carmelinojadulco@gmail.com", href: "mailto:carmelinojadulco@gmail.com", icon: Mail },
     { name: "LinkedIn", value: "linkedin.com/in/carms", href: "https://www.linkedin.com/in/carmelino-jadulco/", icon: Linkedin },
     { name: "GitHub", value: "github.com/snowii-yukii", href: "https://github.com/snowii-yukii", icon: Github },
-    { name: "Resume", value: "Download CV Document", href: "#", icon: FileText },
+    { name: "Resume", value: "Download CV Document", href: "/resume1.0.1.pdf", download: "Carmelino_Jadulco_Resume.pdf", icon: FileText },
   ];
 
 
@@ -125,13 +125,9 @@ export default function Contact() {
                   <a
                     key={link.name}
                     href={link.href}
-                    target="_blank"
-                    onClick={(e) => {
-                      if (link.name === "Resume") {
-                        e.preventDefault();
-                        alert("Resume download triggered (simulated placeholder).");
-                      }
-                    }}
+                    target={link.name === "Resume" ? "_self" : "_blank"}
+                    download={link.name === "Resume" ? link.download : undefined}
+                    
                     className="flex items-center gap-4 p-4 rounded-xl border border-white/5 bg-slate-900/40 hover:bg-slate-900 hover:border-blue-500/30 transition-all duration-300 group"
                   >
                     <div className="p-2.5 rounded-lg bg-slate-800 text-blue-400 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300">
