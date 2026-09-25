@@ -19,7 +19,7 @@ const PROJECTS_DATA = [
     mobileImage: weatherAppMobileImg,
     tags: ["React", "Tailwind CSS", "REST API", "Lucide Icons", "Responsive UI"],
     github: "https://github.com/snowii-yukii",
-    demo: "https://weather-app-neon-ten-36.vercel.app",
+    demo: "https://weatherv2-inky.vercel.app",
     overview: "Built to deliver weather analytics and environmental health monitoring in an intuitive, modern dark-mode dashboard interface.",
     problem: "Many free weather platforms are overloaded with disruptive ads, slow response times, and disjointed interfaces that hide essential environmental data.",
     solution: "Designed a clean, single-screen dashboard combining instant city search, atmospheric telemetry (wind speed, humidity, pressure, visibility), and air quality indices with rapid metric unit conversion.",
