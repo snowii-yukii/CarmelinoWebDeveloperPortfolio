@@ -1,59 +1,90 @@
 @import "tailwindcss";
 
 @theme {
-  /* Override default font mappings */
-  --font-sans: "Inter", sans-serif;
-  --font-heading: "Poppins", sans-serif;
+  /* Modern geometric & mono typography */
+  --font-sans: "Plus Jakarta Sans", "Inter", sans-serif;
+  --font-heading: "Plus Jakarta Sans", "Poppins", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
 
-  /* Custom palette matching the approved implementation plan */
-  --color-bg-dark: #0F172A;
-  --color-card-dark: #1E293B;
+  /* Refined, deep obsidian palette */
+  --color-bg-dark: #090D16;
+  --color-bg-card: #0F172A;
   --color-primary: #3B82F6;
   --color-primary-hover: #2563EB;
   --color-text-light: #F8FAFC;
   --color-text-gray: #94A3B8;
 
-  /* Accent highlight/gradient colors */
+  /* Accent highlights */
   --color-accent-blue: #3B82F6;
   --color-accent-indigo: #6366F1;
+  --color-accent-cyan: #06B6D4;
 }
 
 @layer utilities {
   .text-glow {
-    text-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+    text-shadow: 0 0 25px rgba(59, 130, 246, 0.45);
   }
-  
+
+  .bg-dot-grid {
+    background-image: radial-gradient(rgba(255, 255, 255, 0.09) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  .bg-grid-pattern {
+    background-size: 40px 40px;
+    background-image: 
+      linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  }
+
   .glass-navbar {
-    background-color: rgba(15, 23, 42, 0.8);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(9, 13, 22, 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .bento-card {
+    background: linear-gradient(145deg, rgba(15, 23, 42, 0.7) 0%, rgba(10, 15, 26, 0.8) 100%);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.06);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .bento-card:hover {
+    border-color: rgba(59, 130, 246, 0.35);
+    box-shadow: 0 12px 35px -5px rgba(0, 0, 0, 0.65), 0 0 25px -5px rgba(59, 130, 246, 0.15), inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
   }
 
   .glass-card {
-    background-color: rgba(30, 41, 59, 0.6);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background-color: rgba(15, 23, 42, 0.65);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
   }
 
   .glass-card:hover {
     border-color: rgba(59, 130, 246, 0.3);
+    box-shadow: 0 8px 30px -4px rgba(0, 0, 0, 0.6), 0 0 20px -4px rgba(59, 130, 246, 0.12);
   }
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 7px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0F172A;
+  background: #090D16;
 }
 
 ::-webkit-scrollbar-thumb {
   background: #1E293B;
-  border-radius: 4px;
+  border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -62,8 +93,8 @@
 
 /* Selection Highlight */
 ::selection {
-  background-color: rgba(59, 130, 246, 0.3);
-  color: #F8FAFC;
+  background-color: rgba(59, 130, 246, 0.35);
+  color: #FFFFFF;
 }
 
 /* Base Body settings */
@@ -76,4 +107,9 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
+  letter-spacing: -0.025em;
+}
+
+code, kbd, samp, pre {
+  font-family: var(--font-mono);
 }

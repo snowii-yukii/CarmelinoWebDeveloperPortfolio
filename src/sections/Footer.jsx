@@ -4,48 +4,45 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-slate-950 border-t border-white/5 py-12 relative">
-      <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
-        {/* Left Side: Copyright & Logo */}
-        <div className="flex flex-col items-center md:items-start gap-2">
+    <footer className="bg-[#070A11] border-t border-white/8 py-14 relative">
+      <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-8">
+        
+        {/* Left Side: Colophon info */}
+        <div className="flex flex-col items-center md:items-start gap-2.5 text-center md:text-left">
           <a
             href="#hero"
-            className="flex items-center gap-2 font-heading font-bold text-lg text-white"
+            className="flex items-center gap-2 group font-heading font-extrabold text-base tracking-tight text-white cursor-pointer"
           >
-            <span className="h-1.5 w-1.5 rounded-full bg-blue-500" />
-            Carms<span className="text-blue-500 font-light font-sans text-xs">.dev</span>
+            <span className="w-2 h-2 rounded-full bg-blue-500 group-hover:scale-125 transition-transform" />
+            Carms<span className="font-mono text-xs text-blue-400 font-medium">.dev</span>
           </a>
-          <p className="text-xs text-slate-500 font-normal">
-            &copy; {currentYear} Carms. Built with React & Tailwind CSS.
+          <p className="text-xs font-mono text-slate-400">
+            Handcrafted with intention in Davao City, PH 🌴
+          </p>
+          <p className="text-[11px] font-mono text-slate-500">
+            &copy; {currentYear} Carmelino Jadulco. React 19 · Tailwind v4 · Framer Motion.
           </p>
         </div>
 
-        {/* Middle: Performance Metrics Badge */}
-        <div className="flex items-center gap-3 bg-slate-900 border border-white/5 px-4 py-2 rounded-full">
-          <div className="flex items-center gap-1">
-            <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="text-[10px] text-slate-400 font-semibold uppercase tracking-wider">Lighthouse Audits:</span>
+        {/* Right Side: Back to Top & Quick Status */}
+        <div className="flex flex-col sm:flex-row items-center gap-4">
+          <div className="px-3 py-1.5 rounded-full bg-slate-900 border border-white/5 text-[11px] font-mono text-slate-400 flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            <span>All systems nominal</span>
           </div>
-          <div className="flex items-center gap-2 text-xs font-bold text-white font-mono">
-            <span className="text-emerald-400">Perf: 99</span>
-            <span className="text-slate-600">|</span>
-            <span className="text-emerald-400">SEO: 100</span>
-            <span className="text-slate-600">|</span>
-            <span className="text-emerald-400">A11y: 98</span>
-          </div>
+
+          <a
+            href="#hero"
+            className="flex items-center gap-2 text-xs font-mono text-slate-400 hover:text-white transition-colors cursor-pointer group"
+            aria-label="Back to top"
+          >
+            <span>Back to Top</span>
+            <div className="p-1.5 rounded-lg bg-slate-900 border border-white/10 group-hover:border-blue-500/40 group-hover:text-blue-400 transition-colors">
+              <ArrowUp className="w-3.5 h-3.5" />
+            </div>
+          </a>
         </div>
 
-        {/* Right Side: Back to Top Link */}
-        <a
-          href="#hero"
-          className="flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-white transition-colors cursor-pointer"
-          aria-label="Back to top"
-        >
-          Back To Top
-          <div className="p-1.5 rounded-full bg-slate-900 border border-white/5 text-slate-400 hover:text-white transition-colors">
-            <ArrowUp className="h-3.5 w-3.5" />
-          </div>
-        </a>
       </div>
     </footer>
   );

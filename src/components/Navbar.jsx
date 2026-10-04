@@ -1,13 +1,11 @@
 import { useState, useEffect } from "react";
-import { Menu, X, ArrowUpRight } from "lucide-react";
+import { Menu, X, ArrowUpRight, Copy, Check, Terminal } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const NAV_ITEMS = [
   { name: "About", href: "#about" },
-  { name: "Capabilities", href: "#tech-stack" },
   { name: "Projects", href: "#projects" },
-  { name: "Process", href: "#process" },
-  { name: "Journey", href: "#timeline" },
+  { name: "Arsenal", href: "#capabilities" },
   { name: "Contact", href: "#contact" },
 ];
 
@@ -15,101 +13,163 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
   const [scrolled, setScrolled] = useState(false);
+  const [localTime, setLocalTime] = useState("");
+  const [copied, setCopied] = useState(false);
+
+  // Live Philippine Local Time (Davao City, UTC+8)
+  useEffect(() => {
+    const updateTime = () => {
+      try {
+        const timeStr = new Intl.DateTimeFormat("en-US", {
+          timeZone: "Asia/Manila",
+          hour: "numeric",
+          minute: "2-digit",
+          hour12: true,
+        }).format(new Date());
+        setLocalTime(timeStr);
+      } catch {
+        setLocalTime("UTC+8");
+      }
+    };
+
+    updateTime();
+    const interval = setInterval(updateTime, 30000);
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
-      // Track scroll depth for navbar background transition
-      setScrolled(window.scrollY > 20);
+      setScrolled(window.scrollY > 25);
 
-      // Track active section on scroll
-      const sections = NAV_ITEMS.map((item) => item.href.substring(1));
-      sections.push("hero");
+      const sections = ["hero", "about", "projects", "capabilities", "contact"];
+      let current = "hero";
 
-      let currentSection = "hero";
       for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          // If the top of the section is near the middle of the viewport
-          if (rect.top <= 160) {
-            currentSection = section;
+        const el = document.getElementById(section);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= 200) {
+            current = section;
           }
         }
       }
-      setActiveSection(currentSection);
+      setActiveSection(current);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    // Initial check
     handleScroll();
-    
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const copyEmail = () => {
+    navigator.clipboard.writeText("carmelinojadulco@gmail.com");
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   return (
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled
-            ? "bg-[#0F172A]/80 backdrop-blur-md border-b border-white/5 py-4"
-            : "bg-transparent py-6"
+          scrolled ? "py-3 bg-[#090D16]/85 backdrop-blur-xl border-b border-white/8 shadow-2xl shadow-black/40" : "py-5 bg-transparent"
         }`}
       >
         <nav className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-          {/* Logo / Brand */}
+          {/* Brand Mark with terminal vibe */}
           <a
             href="#hero"
-            className="flex items-center gap-2 group font-heading font-bold text-xl tracking-tight text-white"
+            className="flex items-center gap-2.5 group cursor-pointer"
+            aria-label="Home"
           >
-            <span className="h-2 w-2 rounded-full bg-blue-500 group-hover:scale-150 transition-transform duration-300" />
-            Carms<span className="text-blue-500 font-light font-sans text-sm">.dev</span>
+            <div className="w-8 h-8 rounded-lg bg-blue-600/10 border border-blue-500/25 flex items-center justify-center text-blue-400 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300 shadow-sm shadow-blue-500/10">
+              <Terminal className="w-4 h-4" />
+            </div>
+            <div className="flex flex-col text-left">
+              <span className="font-heading font-extrabold text-sm tracking-tight text-white flex items-center gap-1.5">
+                Carms
+                <span className="font-mono text-[10px] text-blue-400 font-semibold px-1.5 py-0.5 rounded bg-blue-500/10 border border-blue-500/20">
+                  dev
+                </span>
+              </span>
+              <span className="text-[10px] font-mono text-slate-400 group-hover:text-slate-300 transition-colors">
+                Carmelino Jadulco
+              </span>
+            </div>
           </a>
 
-          {/* Desktop Nav Items */}
-          <ul className="hidden md:flex items-center gap-1 bg-slate-900/40 p-1.5 rounded-full border border-white/5 backdrop-blur-sm">
+          {/* Center Pill: Desktop Nav Items */}
+          <div className="hidden md:flex items-center gap-1 bg-slate-900/60 p-1.5 rounded-full border border-white/10 backdrop-blur-md shadow-inner shadow-white/5">
             {NAV_ITEMS.map((item) => {
               const sectionId = item.href.substring(1);
               const isActive = activeSection === sectionId;
               return (
-                <li key={item.name} className="relative">
-                  <a
-                    href={item.href}
-                    className={`px-4 py-2 text-sm font-medium rounded-full block transition-colors duration-200 ${
-                      isActive ? "text-white" : "text-slate-400 hover:text-white"
-                    }`}
-                  >
-                    {isActive && (
-                      <motion.span
-                        layoutId="activeTab"
-                        className="absolute inset-0 bg-blue-500/10 border border-blue-500/20 rounded-full -z-10"
-                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                      />
-                    )}
-                    {item.name}
-                  </a>
-                </li>
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className={`relative px-4 py-1.5 text-xs font-semibold rounded-full transition-colors duration-200 ${
+                    isActive ? "text-white" : "text-slate-400 hover:text-slate-200"
+                  }`}
+                >
+                  {isActive && (
+                    <motion.span
+                      layoutId="activeTab"
+                      className="absolute inset-0 bg-blue-600/20 border border-blue-500/30 rounded-full -z-10 shadow-sm shadow-blue-500/10"
+                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                  {item.name}
+                </a>
               );
             })}
-          </ul>
+          </div>
 
-          {/* Call to Action Button */}
-          <div className="hidden md:block">
+          {/* Right Area: Live Time & Quick Email Action */}
+          <div className="hidden lg:flex items-center gap-3">
+            {/* Davao City Time Badge */}
+            {localTime && (
+              <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900/50 border border-white/5 text-[11px] font-mono text-slate-400">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                <span>Davao, PH</span>
+                <span className="text-slate-500">·</span>
+                <span className="text-slate-300 font-medium">{localTime}</span>
+              </div>
+            )}
+
+            {/* Quick Copy Email Button */}
+            <button
+              onClick={copyEmail}
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-mono font-medium rounded-full bg-slate-900 border border-white/10 hover:border-blue-500/30 text-slate-300 hover:text-white transition-all cursor-pointer"
+              title="Copy Email to Clipboard"
+            >
+              {copied ? (
+                <>
+                  <Check className="w-3.5 h-3.5 text-emerald-400" />
+                  <span className="text-emerald-400">Copied!</span>
+                </>
+              ) : (
+                <>
+                  <Copy className="w-3 h-3 text-blue-400" />
+                  <span>carmelinojadulco@gmail.com</span>
+                </>
+              )}
+            </button>
+
             <a
               href="#contact"
-              className="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-semibold text-white bg-slate-900 border border-white/10 hover:border-blue-500/30 hover:bg-slate-800 rounded-full transition-all duration-300 shadow-sm"
+              className="inline-flex items-center gap-1.5 px-4 py-1.5 text-xs font-semibold text-white bg-blue-600 hover:bg-blue-500 rounded-full transition-all duration-300 shadow-md shadow-blue-500/20 cursor-pointer"
             >
-              Get In Touch
-              <ArrowUpRight className="h-4 w-4 text-blue-500" />
+              Let's Talk
+              <ArrowUpRight className="h-3.5 w-3.5" />
             </a>
           </div>
 
           {/* Mobile Menu Toggle Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 text-slate-400 hover:text-white focus:outline-none"
+            className="md:hidden p-2 text-slate-400 hover:text-white focus:outline-none rounded-lg bg-slate-900/60 border border-white/5"
             aria-label="Toggle Menu"
           >
-            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </nav>
       </header>
@@ -118,13 +178,21 @@ export default function Navbar() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -15 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
+            exit={{ opacity: 0, y: -15 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-x-0 top-[72px] z-40 md:hidden bg-slate-950/95 border-b border-white/10 backdrop-blur-xl px-6 py-8"
+            className="fixed inset-x-0 top-[64px] z-40 md:hidden bg-[#090D16]/98 border-b border-white/10 backdrop-blur-2xl px-6 py-6 shadow-2xl"
           >
-            <ul className="flex flex-col gap-4">
+            <div className="flex items-center justify-between pb-4 mb-4 border-b border-white/5 text-xs font-mono text-slate-400">
+              <span className="flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                Davao City, PH
+              </span>
+              <span>{localTime}</span>
+            </div>
+
+            <ul className="flex flex-col gap-2">
               {NAV_ITEMS.map((item) => {
                 const sectionId = item.href.substring(1);
                 const isActive = activeSection === sectionId;
@@ -133,8 +201,8 @@ export default function Navbar() {
                     <a
                       href={item.href}
                       onClick={() => setIsOpen(false)}
-                      className={`text-lg font-medium block py-2 border-b border-white/5 transition-colors ${
-                        isActive ? "text-blue-400" : "text-slate-300 hover:text-white"
+                      className={`text-base font-semibold block py-2.5 px-3 rounded-xl transition-colors ${
+                        isActive ? "bg-blue-600/15 text-blue-400 border border-blue-500/25" : "text-slate-300 hover:bg-slate-900 hover:text-white"
                       }`}
                     >
                       {item.name}
@@ -142,13 +210,13 @@ export default function Navbar() {
                   </li>
                 );
               })}
-              <li className="mt-4">
+              <li className="pt-3">
                 <a
                   href="#contact"
                   onClick={() => setIsOpen(false)}
-                  className="w-full flex items-center justify-center gap-2 py-3 font-semibold text-white bg-blue-600 hover:bg-blue-500 rounded-xl transition-all"
+                  className="w-full flex items-center justify-center gap-2 py-3 font-semibold text-white bg-blue-600 hover:bg-blue-500 rounded-xl transition-all shadow-lg shadow-blue-500/25"
                 >
-                  Get In Touch
+                  Let's Connect
                   <ArrowUpRight className="h-4 w-4" />
                 </a>
               </li>

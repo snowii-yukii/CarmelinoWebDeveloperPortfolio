@@ -5,19 +5,19 @@ import { motion } from "framer-motion";
  * Combines Framer Motion viewport reveal effects, a spring hover-lift animation,
  * glassmorphism borders, and a decorative overlay gradient.
  */
-export default function Card({ children, className = "", delay = 0, ...props }) {
+export default function Card({ children, className = "", delay = 0, hover = true, ...props }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 24 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.6, delay, ease: [0.16, 1, 0.3, 1] }}
-      whileHover={{ y: -6 }}
-      className={`relative overflow-hidden rounded-2xl border border-white/5 bg-slate-800/40 p-6 backdrop-blur-md transition-colors duration-300 hover:border-blue-500/30 ${className}`}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.5, delay, ease: [0.16, 1, 0.3, 1] }}
+      whileHover={hover ? { y: -4, transition: { duration: 0.2 } } : undefined}
+      className={`bento-card relative overflow-hidden rounded-2xl p-6 ${className}`}
       {...props}
     >
-      {/* Dynamic ambient highlight glow inside card */}
-      <div className="pointer-events-none absolute -right-24 -top-24 h-48 w-48 rounded-full bg-blue-500/5 blur-3xl transition-opacity duration-300" />
+      {/* Subtle top-edge light reflection for tactile physical feel */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/15 to-transparent" />
       
       {children}
     </motion.div>
