@@ -4,32 +4,32 @@ import { GraduationCap, Code2, Server, Compass, Lightbulb } from "lucide-react";
 const TIMELINE_EVENTS = [
   {
     year: "2024 (Q1-Q2)",
-    title: "Foundations of Web Development",
-    description: "Began journey by mastering HTML5 structure, modern CSS3 layout strategies (Grid, Flexbox), and browser compliance rules.",
+    title: "HTML, CSS & Web Foundations",
+    description: "Began with semantic HTML5, modern CSS3 layout (Grid, Flexbox), and responsive design principles. First real deployments to Vercel.",
     icon: GraduationCap,
   },
   {
     year: "2024 (Q3-Q4)",
-    title: "Static Projects & Responsive Layouts",
-    description: "Built clean responsive mockups, static business landing pages, and learned SEO principles and web accessibility (WCAG).",
+    title: "JavaScript & Interactive Interfaces",
+    description: "Moved into ES6+ JavaScript, DOM manipulation, and event-driven patterns. Built interactive UI components from scratch.",
     icon: Lightbulb,
   },
   {
     year: "2025 (Q1-Q2)",
-    title: "Interactive Client-Side Apps (React)",
-    description: "Transitioned to building SPA layouts using React. Mastered state management, Vite builders, Framer Motion, and component reuse.",
+    title: "React SPA & Component Architecture",
+    description: "Adopted React — hooks, context, state management, Framer Motion animations, and reusable component systems with Tailwind CSS.",
     icon: Code2,
   },
   {
     year: "2025 (Q3-Q4)",
-    title: "Full-Stack Data Engineering",
-    description: "Expanded skills to the backend. Created secure RESTful APIs using Node, Express, MongoDB, SQL, and integrated JWT authentication.",
+    title: "Backend & RESTful API Engineering",
+    description: "Built production-grade REST APIs with Node.js, Express, PostgreSQL, Prisma, and JWT authentication. First full-stack deployments.",
     icon: Server,
   },
   {
-    year: "2026 (Present)",
-    title: "System Performance & Architecture",
-    description: "Currently researching server-side performance caching, web vitals optimization (Lighthouse 95+), and automated CI/CD tooling.",
+    year: "2026 (Now)",
+    title: "Next.js, Supabase & Full-Stack Systems",
+    description: "Currently building full-stack apps with Next.js App Router, Supabase PostgreSQL & RLS, TypeScript, and AI-augmented engineering workflows.",
     icon: Compass,
   },
 ];
@@ -39,17 +39,17 @@ export default function Timeline() {
     <section id="timeline" className="py-20 relative bg-slate-950/10">
       <div className="max-w-7xl mx-auto px-6">
         {/* Section Header */}
-        <div className="flex flex-col items-center text-center mb-16">
-          <h2 className="text-xs font-bold tracking-widest text-blue-500 uppercase mb-3">
-            Career Journey
+        <div className="flex flex-col items-start mb-12">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-mono mb-3">
+            <Compass className="w-3.5 h-3.5" />
+            <span>Learning Path</span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight">
+            Technical Journey
           </h2>
-          <h3 className="text-3xl sm:text-4xl font-bold text-white tracking-tight leading-tight">
-            Learning Journey & Technical Milestones
-          </h3>
-          <p className="text-sm text-slate-400 max-w-md mt-3 leading-relaxed font-normal">
-            A transparent timeline of hands-on technical acquisition, building progressively complex software models.
+          <p className="text-sm text-slate-400 max-w-lg mt-2 leading-relaxed">
+            From first HTML file to full-stack production deployments — two years of building progressively complex systems.
           </p>
-          <div className="h-1 w-12 bg-blue-500 rounded-full mt-4" />
         </div>
 
         {/* Vertical Timeline container */}

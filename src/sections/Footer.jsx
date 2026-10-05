@@ -20,7 +20,7 @@ export default function Footer() {
             Handcrafted with intention in Davao City, PH 🌴
           </p>
           <p className="text-[11px] font-mono text-slate-500">
-            &copy; {currentYear} Carmelino Jadulco. React 19 · Tailwind v4 · Framer Motion.
+            &copy; {currentYear} Carmelino Jadulco. Next.js · Supabase · TypeScript · React 19 · Tailwind v4.
           </p>
         </div>
 

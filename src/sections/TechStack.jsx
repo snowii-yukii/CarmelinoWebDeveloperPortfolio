@@ -1,74 +1,74 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
-  Cpu, Layout, FileCode, Server, Database, GitBranch, Sparkles, Layers, Zap, Search,
-  Globe, Bot, Terminal, MessageSquareCode, ChevronDown, ChevronUp 
+  Cpu, Layout, FileCode, Server, Database, GitBranch, Sparkles, Layers, Zap,
+  Globe, Bot, Terminal, ChevronDown, ChevronUp 
 } from "lucide-react";
 import Card from "../components/Card";
 
 const ARSENAL = [
   {
-    name: "React 19",
-    category: "Frontend",
-    tag: "Core Framework",
-    description: "Component hierarchies, reactive hook states, and rapid SPA rendering.",
-    icon: Cpu,
+    name: "Next.js",
+    category: "Full Stack",
+    tag: "App Router & SSR",
+    description: "Server components, server actions, dynamic routing, and fast edge rendering.",
+    icon: Globe,
   },
   {
-    name: "Next.js",
+    name: "Supabase",
+    category: "Full Stack",
+    tag: "PostgreSQL & Auth",
+    description: "Relational database, Row-Level Security (RLS), realtime subscriptions, and auth.",
+    icon: Database,
+  },
+  {
+    name: "TypeScript",
+    category: "Full Stack",
+    tag: "Type Safety",
+    description: "Strict end-to-end type safety spanning database schemas, API routes, and UI state.",
+    icon: FileCode,
+  },
+  {
+    name: "React 19",
     category: "Frontend",
-    tag: "React Framework",
-    description: "Server-side rendering, static generation, app router, and asset optimization.",
-    icon: Globe,
+    tag: "Core UI Engine",
+    description: "Modern hooks, concurrent rendering, and reactive component hierarchies.",
+    icon: Cpu,
   },
   {
     name: "Tailwind CSS v4",
     category: "Frontend",
-    tag: "CSS Engine",
-    description: "Modern CSS variables, fluid responsive breakpoints, and zero runtime overhead.",
+    tag: "Modern Styling",
+    description: "Token-based architecture, modern CSS variables, and fluid responsive design.",
     icon: Layout,
-  },
-  {
-    name: "JavaScript (ESNext)",
-    category: "Frontend",
-    tag: "Core Language",
-    description: "Modern ES6+ syntax, asynchronous pipelines, and canvas coordinate math.",
-    icon: FileCode,
   },
   {
     name: "Framer Motion",
     category: "Frontend",
     tag: "Physics & Motion",
-    description: "Spring animations, layout transitions, and tactile micro-interactions.",
+    description: "Spring physics animations, layout transitions, and tactile micro-interactions.",
     icon: Zap,
   },
   {
     name: "Node.js & Express",
     category: "Backend",
-    tag: "Server & API",
+    tag: "Runtime & APIs",
     description: "REST endpoints, CORS configuration, payload validation, and clean routing.",
     icon: Server,
   },
   {
-    name: "Supabase",
+    name: "Prisma & PostgreSQL",
     category: "Backend",
-    tag: "PostgreSQL BaaS",
-    description: "Relational PostgreSQL, real-time database subscriptions, RLS, and auth.",
+    tag: "ORM & Schema",
+    description: "Declarative schema modeling, automated migrations, and relational queries.",
     icon: Database,
   },
   {
-    name: "REST APIs & JSON",
+    name: "REST APIs & Webhooks",
     category: "Backend",
-    tag: "Data Flow",
+    tag: "Data Pipelines",
     description: "Live telemetry integration, error boundaries, debouncing, and client caching.",
     icon: Layers,
-  },
-  {
-    name: "MongoDB & MySQL",
-    category: "Backend",
-    tag: "Data Storage",
-    description: "Document models and relational table schemas for read/write consistency.",
-    icon: Database,
   },
   {
     name: "Git & GitHub",
@@ -78,36 +78,22 @@ const ARSENAL = [
     icon: GitBranch,
   },
   {
-    name: "Claude Code",
+    name: "Claude Code & Antigravity",
     category: "Tools",
-    tag: "AI Engineering",
-    description: "Architectural reasoning, refactoring passes, and algorithm verification.",
-    icon: Bot,
-  },
-  {
-    name: "ChatGPT",
-    category: "Tools",
-    tag: "AI Research",
-    description: "API schema exploration, rapid prototyping, and syntax lookups.",
-    icon: MessageSquareCode,
-  },
-  {
-    name: "Antigravity",
-    category: "Tools",
-    tag: "Agentic IDE",
-    description: "Agentic pair programming, multi-step orchestration, and automated test loops.",
+    tag: "Agentic Engineering",
+    description: "Agentic pair programming, multi-step orchestration, and rapid iteration.",
     icon: Terminal,
   },
   {
-    name: "General SEO & Vitals",
-    category: "Architecture",
-    tag: "Optimization",
-    description: "Semantic HTML5, OpenGraph metadata, fast FCP, and 95+ Lighthouse scores.",
-    icon: Search,
+    name: "Vercel & Edge Deployment",
+    category: "Tools",
+    tag: "Infrastructure",
+    description: "Zero-config serverless deployments, preview branches, and global CDN edge routing.",
+    icon: Bot,
   },
 ];
 
-const CATEGORIES = ["All", "Frontend", "Backend", "Tools", "Architecture"];
+const CATEGORIES = ["All", "Full Stack", "Frontend", "Backend", "Tools"];
 const INITIAL_DISPLAY_COUNT = 6;
 
 export default function TechStack() {
@@ -132,15 +118,15 @@ export default function TechStack() {
         <div className="flex flex-col items-start mb-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-mono mb-3">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>Developer Arsenal</span>
+            <span>Stack & Architecture</span>
           </div>
 
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight">
-            Tools & Technologies
+            Technical Arsenal
           </h2>
 
           <p className="text-slate-400 max-w-xl mt-2 text-sm leading-relaxed">
-            The core frameworks, databases, and tooling I use to build fast, reliable web applications.
+            The core full-stack frameworks, databases, and tooling I use to engineer robust, high-performance web applications.
           </p>
 
         {/* Category Filter Pills with Item Counts */}

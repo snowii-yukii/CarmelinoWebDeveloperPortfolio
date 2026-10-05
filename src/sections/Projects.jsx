@@ -13,30 +13,30 @@ const PROJECTS_DATA = [
   {
     id: "weatherpulse",
     title: "WeatherPulse",
-    fullName: "Real-Time Weather & AQI Dashboard",
-    category: "Web App",
-    badge: "Live Telemetry",
-    summary: "Instantaneous meteorological dashboard tracking global weather conditions, 5-day forecasts, and granular air quality indices (PM2.5, PM10, NO2).",
-    engineeringHighlight: "Engineered with modular React state hooks and client-side response caching. Instantaneous °C/°F mathematical conversions run without redundant API requests, coupled with resilient fallback states.",
+    fullName: "Next.js & TypeScript Weather Intelligence",
+    category: "Full Stack",
+    badge: "Next.js App",
+    summary: "Meteorological intelligence platform tracking real-time global atmospheric conditions, 5-day forecasts, and granular air quality indices.",
+    engineeringHighlight: "Engineered with Next.js App Router and TypeScript. Employs server-side data fetching, client caching, and instantaneous unit calculations without redundant network overhead.",
     desktopImage: weatherAppImg,
     mobileImage: weatherAppMobileImg,
-    tags: ["React 19", "Tailwind CSS", "REST APIs", "Air Quality API"],
-    github: "https://github.com/snowii-yukii",
+    tags: ["Next.js", "TypeScript", "Tailwind CSS", "REST APIs"],
+    github: "https://github.com/snowii-yukii/weatherv2",
     demo: "https://weatherv2-inky.vercel.app",
-    domain: "weatherpulse.app"
+    domain: "weatherv2.vercel.app"
   },
   {
     id: "beats3-landing",
     title: "Beats 3 Showcase",
-    fullName: "High-Conversion Product Landing Page",
-    category: "Landing Page",
-    badge: "E-Commerce",
-    summary: "High-impact commercial landing page engineered for Beats 3 headphones, blending luxury dark aesthetics, typography hierarchy, and tactile product showcases.",
-    engineeringHighlight: "Mobile-first architecture tuned for top Core Web Vitals. Framer Motion spring physics deliver smooth, non-linear feedback on scroll reveals and hover states with zero frame drops.",
+    fullName: "Tactile Product Showcase Experience",
+    category: "Web App",
+    badge: "Interactive UI",
+    summary: "Commercial product showcase engineered for audio hardware, pairing dark aesthetics with non-linear spring motion and fluid responsive media.",
+    engineeringHighlight: "Responsive layout architecture with Framer Motion spring physics. Smooth gesture feedback, scroll reveals, and hardware-accelerated transforms.",
     desktopImage: landingPageImg,
     mobileImage: landingPageMobileImg,
-    tags: ["React", "Tailwind CSS", "Framer Motion", "SEO Architecture"],
-    github: "https://github.com/snowii-yukii",
+    tags: ["React 19", "Tailwind CSS", "Framer Motion", "Responsive Design"],
+    github: "https://github.com/snowii-yukii/Responsive-Landing-Page",
     demo: "https://snowii-yukii.github.io/Responsive-Landing-Page/",
     domain: "beats3-showcase.app"
   },
@@ -47,17 +47,17 @@ const PROJECTS_DATA = [
     category: "Creative Dev",
     badge: "Math & Physics",
     summary: "Experimental human-computer interaction (HCI) translating cursor and touch coordinates into lifelike ocular pupil dynamics in real time.",
-    engineeringHighlight: "Custom trigonometry (Math.atan2, Math.hypot) calculates boundary-constrained pupil orientation directly in the DOM. Hardware-accelerated CSS transforms maintain locked 60 FPS without heavy 3D runtimes.",
+    engineeringHighlight: "Boundary-constrained trigonometry math (Math.atan2, Math.hypot) coupled with hardware-accelerated CSS transforms at a consistent 60 FPS.",
     desktopImage: observedImg,
     mobileImage: null,
-    tags: ["Trigonometry Math", "React", "Vector Graphics", "CSS Transforms"],
-    github: "https://github.com/snowii-yukii",
+    tags: ["React 19", "Trigonometry Math", "CSS Transforms", "Vector Graphics"],
+    github: "https://github.com/snowii-yukii/Observed",
     demo: "https://observed-five.vercel.app",
     domain: "observed-lab.app"
   }
 ];
 
-const CATEGORIES = ["All", "Web App", "Landing Page", "Creative Dev"];
+const CATEGORIES = ["All", "Full Stack", "Web App", "Creative Dev"];
 
 export default function Projects() {
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -94,7 +94,7 @@ export default function Projects() {
           </h2>
           
           <p className="text-sm sm:text-base text-slate-400 max-w-2xl mt-2 leading-relaxed">
-            Real software deployed to production. Each project solves a specific technical challenge with clean React architecture and fluid responsive styling.
+            Real software deployed to production. Built with modern architecture, type-safe data flows, and responsive UI craft.
           </p>
 
           {/* Category Filter Pills */}

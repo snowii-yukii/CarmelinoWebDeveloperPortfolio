@@ -9,19 +9,20 @@ export default function Hero() {
   const configCode = `const developer = {
   name: "Carmelino Jadulco",
   handle: "Carms",
-  role: "Frontend Developer & UI Craftsman",
-  origin: "Davao City, PH 🌴",
-  coreStack: ["React 19", "Next.js", "Tailwind v4", "Supabase"],
-  motto: "No templates. Real craft."
+  role: "Full-Stack Developer",
+  origin: "Davao City, PH",
+  coreStack: ["Next.js", "Supabase", "TypeScript", "React 19", "Tailwind v4"],
+  database: "PostgreSQL & Prisma",
+  focus: "Full-stack apps with tactile UI & robust backends"
 };`;
 
   const personalityCode = `{
-  "coffee": "Cold brew, black ☕",
-  "editor": "VS Code + JetBrains Mono",
-  "obsession": "Sub-second FCP & 60fps springs",
-  "soundtrack": "Synthwave / Lo-Fi Beats 🎧",
-  "petPeeve": "10MB JS bundles that lag on mobile",
-  "status": "Available for frontend roles & internships"
+  "fuel": "White Monster",
+  "editor": "Antigravity",
+  "focus": "Full-stack apps, realtime data & clean APIs",
+  "soundtrack": "Synthwave & Lo-Fi Beats 🎧",
+  "craft": ["Type safety", "Zero layout shift", "Sub-second response"],
+  "status": "Available for full-stack engineering roles"
 }`;
 
   const handleCopyCode = () => {
@@ -58,7 +59,7 @@ export default function Hero() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
             </span>
-            <span>Available for frontend roles & internships</span>
+            <span>Available for full-stack engineering roles</span>
             <span className="text-slate-500 hidden sm:inline">·</span>
             <span className="text-slate-400 text-[11px] hidden sm:inline">Davao City, PH</span>
           </motion.div>
@@ -68,13 +69,12 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1] text-white mb-6"
+            className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.08] text-white mb-6"
           >
-            Crafting web interfaces with{" "}
+            Building full-stack web applications with{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-sky-300 to-indigo-400">
-              speed, tactile feel,
-            </span>{" "}
-            and character.
+              Next.js & Supabase.
+            </span>
           </motion.h1>
 
           {/* Genuine Human Intro */}
@@ -84,7 +84,7 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-base sm:text-lg text-slate-300 max-w-2xl mb-8 leading-relaxed font-normal"
           >
-            Hey, I'm <strong className="text-white font-semibold">Carmelino (Carms)</strong> — a frontend developer obsessed with micro-interactions, responsive architecture, and building web apps that feel polished instead of like boilerplate templates.
+            Hey, I'm <strong className="text-white font-semibold">Carmelino (Carms)</strong> — a full-stack developer engineering modern web apps with Next.js, Supabase, and TypeScript. Focused on scalable backends and reactive, tactile user experiences.
           </motion.p>
 
           {/* Call to Actions */}
@@ -98,7 +98,7 @@ export default function Hero() {
               href="#projects"
               className="group flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm transition-all duration-300 shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 cursor-pointer"
             >
-              <span>Explore Selected Work</span>
+              <span>Explore Work</span>
               <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </a>
 
@@ -130,15 +130,15 @@ export default function Hero() {
           >
             <span className="flex items-center gap-1.5">
               <CheckCircle2 className="w-3.5 h-3.5 text-blue-400" />
-              2+ Years Building
+              Next.js & React 19
             </span>
             <span className="flex items-center gap-1.5">
               <CheckCircle2 className="w-3.5 h-3.5 text-blue-400" />
-              React 19 & Next.js
+              Supabase & PostgreSQL
             </span>
             <span className="flex items-center gap-1.5">
               <CheckCircle2 className="w-3.5 h-3.5 text-blue-400" />
-              Tailwind & Supabase
+              TypeScript & Tailwind v4
             </span>
           </motion.div>
         </div>
@@ -235,7 +235,7 @@ export default function Hero() {
                     </div>
                     <div className="pl-4">
                       <span className="text-slate-400">role:</span>{" "}
-                      <span className="text-emerald-400">"Frontend Developer & UI Craftsman"</span>,
+                      <span className="text-emerald-400">"Full-Stack Developer"</span>,
                     </div>
                     <div className="pl-4">
                       <span className="text-slate-400">origin:</span>{" "}
@@ -243,14 +243,18 @@ export default function Hero() {
                     </div>
                     <div className="pl-4">
                       <span className="text-slate-400">coreStack:</span> [
-                      <span className="text-sky-300">"React 19"</span>,{" "}
                       <span className="text-sky-300">"Next.js"</span>,{" "}
-                      <span className="text-sky-300">"Tailwind v4"</span>,{" "}
-                      <span className="text-sky-300">"Supabase"</span>],
+                      <span className="text-sky-300">"Supabase"</span>,{" "}
+                      <span className="text-sky-300">"TypeScript"</span>,{" "}
+                      <span className="text-sky-300">"React 19"</span>],
                     </div>
                     <div className="pl-4">
-                      <span className="text-slate-400">motto:</span>{" "}
-                      <span className="text-emerald-400">"No templates. Real craft."</span>
+                      <span className="text-slate-400">database:</span>{" "}
+                      <span className="text-emerald-400">"PostgreSQL & Prisma"</span>,
+                    </div>
+                    <div className="pl-4">
+                      <span className="text-slate-400">focus:</span>{" "}
+                      <span className="text-emerald-400">"Full-stack apps with tactile UI & robust backends"</span>
                     </div>
                     <div>&#125;;</div>
                   </motion.div>
@@ -273,18 +277,18 @@ export default function Hero() {
                       <span className="text-emerald-400">"VS Code + JetBrains Mono"</span>,
                     </div>
                     <div className="pl-4">
+                      <span className="text-purple-300">"focus"</span>:{" "}
+                      <span className="text-emerald-400">"Full-stack apps, realtime data & clean APIs"</span>,
+                    </div>
+                    <div className="pl-4">
                       <span className="text-purple-300">"soundtrack"</span>:{" "}
                       <span className="text-emerald-400">"Synthwave & Lo-Fi Beats 🎧"</span>,
                     </div>
                     <div className="pl-4">
-                      <span className="text-purple-300">"obsessions"</span>: [
-                      <span className="text-sky-300">"Sub-second FCP"</span>,{" "}
-                      <span className="text-sky-300">"60fps springs"</span>,{" "}
-                      <span className="text-sky-300">"Zero CLS"</span>],
-                    </div>
-                    <div className="pl-4">
-                      <span className="text-purple-300">"petPeeve"</span>:{" "}
-                      <span className="text-rose-400">"10MB bundles that choke mobile phones"</span>
+                      <span className="text-purple-300">"craft"</span>: [
+                      <span className="text-sky-300">"Type safety"</span>,{" "}
+                      <span className="text-sky-300">"Zero layout shift"</span>,{" "}
+                      <span className="text-sky-300">"Sub-second response"</span>]
                     </div>
                     <div>&#125;</div>
                   </motion.div>

@@ -107,7 +107,7 @@ export default function Contact() {
             Let's build something memorable.
           </h2>
           <p className="text-slate-400 max-w-2xl mt-3 text-base leading-relaxed">
-            Have an open developer position, an interesting freelance build, or just want to chat about frontend craft? Feel free to reach out directly.
+            Available for full-stack engineering roles, Next.js & Supabase application builds, or technical collaborations. Feel free to reach out directly.
           </p>
         </div>
 

@@ -2,15 +2,16 @@
 
 # 🌟 Carmelino Jadulco — Developer Portfolio
 
-**Modern, Fast & SEO-Optimized Web Applications**
+**Full-Stack Web Applications with Next.js, Supabase & TypeScript**
 
 [![React](https://img.shields.io/badge/React-19.2-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
-[![Vite](https://img.shields.io/badge/Vite-8.1-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
+[![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)](https://supabase.com/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4.3-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![Framer Motion](https://img.shields.io/badge/Framer_Motion-12.4-0055FF?style=for-the-badge&logo=framer&logoColor=white)](https://www.framer.com/motion/)
-[![Status](https://img.shields.io/badge/Status-Available_for_Opportunities-10B981?style=for-the-badge)](https://github.com/)
+[![Status](https://img.shields.io/badge/Status-Available_for_Opportunities-10B981?style=for-the-badge)](https://github.com/snowii-yukii)
 
-[**Explore Live Demo »**](https://your-portfolio-domain.vercel.app/) · [Report Bug](https://github.com/your-username/portfolio/issues) · [Request Feature](https://github.com/your-username/portfolio/issues)
+[**Explore Live Demo »**](https://carmelino-jadulco-portfolio.vercel.app/)
 
 </div>
 
@@ -18,7 +19,7 @@
 
 ## 📖 Overview
 
-A developer portfolio crafted with **React 19**, **Vite**, **Tailwind CSS v4**, and **Framer Motion**. Designed from the ground up for high performance, smooth micro-interactions, responsive cross-device layouts, and structured SEO optimization.
+A developer portfolio crafted with **React 19**, **Next.js**, **Supabase**, **Vite**, **Tailwind CSS v4**, and **Framer Motion**. Designed from the ground up for high performance, tactile micro-interactions, responsive cross-device layouts, and clean full-stack architecture.
 
 Showcases real-world applications, technical capabilities, structured workflow methodologies, and direct contact channels.
 
@@ -100,10 +101,10 @@ frontend/
 ## 📬 Connect & Contact
 
 - **Developer**: Carmelino Jadulco (Carms)
-- **Role**: Web Developer & General SEO Specialist
-- **Email**: [carmelinojadulco123@gmail.com](mailto:carmelinojadulco123@gmail.com)
-- **LinkedIn**: [linkedin.com/in/carmelino-jadulco](https://linkedin.com)
-- **GitHub**: [github.com](https://github.com)
+- **Role**: Full-Stack Developer (Next.js & Supabase)
+- **Email**: [carmelinojadulco@gmail.com](mailto:carmelinojadulco@gmail.com)
+- **LinkedIn**: [linkedin.com/in/carmelino-jadulco](https://www.linkedin.com/in/carmelino-jadulco/)
+- **GitHub**: [github.com/snowii-yukii](https://github.com/snowii-yukii)
 
 ---
 
