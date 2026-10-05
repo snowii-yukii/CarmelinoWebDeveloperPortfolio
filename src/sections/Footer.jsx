@@ -26,10 +26,7 @@ export default function Footer() {
 
         {/* Right Side: Back to Top & Quick Status */}
         <div className="flex flex-col sm:flex-row items-center gap-4">
-          <div className="px-3 py-1.5 rounded-full bg-slate-900 border border-white/5 text-[11px] font-mono text-slate-400 flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            <span>All systems nominal</span>
-          </div>
+          
 
           <a
             href="#hero"

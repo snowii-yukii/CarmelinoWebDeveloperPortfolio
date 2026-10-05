@@ -14,7 +14,7 @@ const PROJECTS_DATA = [
     id: "weatherpulse",
     title: "WeatherPulse",
     fullName: "Next.js & TypeScript Weather Intelligence",
-    category: "Full Stack",
+    category: "Web App",
     badge: "Next.js App",
     summary: "Meteorological intelligence platform tracking real-time global atmospheric conditions, 5-day forecasts, and granular air quality indices.",
     engineeringHighlight: "Engineered with Next.js App Router and TypeScript. Employs server-side data fetching, client caching, and instantaneous unit calculations without redundant network overhead.",
@@ -57,7 +57,7 @@ const PROJECTS_DATA = [
   }
 ];
 
-const CATEGORIES = ["All", "Full Stack", "Web App", "Creative Dev"];
+const CATEGORIES = ["All", "Web App", "Creative Dev"];
 
 export default function Projects() {
   const [selectedCategory, setSelectedCategory] = useState("All");

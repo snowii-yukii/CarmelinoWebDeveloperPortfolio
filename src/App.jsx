@@ -1,5 +1,6 @@
 import Navbar from "./components/Navbar";
 import MouseSpotlight from "./components/MouseSpotlight";
+import PixelBlast from "./components/PixelBlast";
 import Hero from "./sections/Hero";
 import About from "./sections/About";
 import Projects from "./sections/Projects";
@@ -27,6 +28,26 @@ export default function App() {
         content="Full-stack developer building modern web applications with Next.js, Supabase, TypeScript, and React." 
       />
 
+      {/* PixelBlast — Fixed full-viewport interactive background */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <PixelBlast
+          variant="circle"
+          color="#3B82F6"
+          pixelSize={4}
+          patternScale={2.5}
+          patternDensity={0.55}
+          speed={0.18}
+          edgeFade={0.35}
+          transparent={true}
+          enableRipples={true}
+          rippleSpeed={0.25}
+          rippleThickness={0.08}
+          rippleIntensityScale={0.7}
+          pixelSizeJitter={0.3}
+          autoPauseOffscreen={true}
+        />
+      </div>
+
       {/* Global interactive elements */}
       <MouseSpotlight />
       <Navbar />
@@ -38,7 +59,6 @@ export default function App() {
         <Projects />
         <Services />
         <TechStack />
-        <Timeline />
         <Contact />
       </main>
 
