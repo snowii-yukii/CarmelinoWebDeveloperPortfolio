@@ -220,7 +220,7 @@ export default function Hero() {
                     exit={{ opacity: 0, y: -4 }}
                     transition={{ duration: 0.15 }}
                   >
-                    <div className="text-slate-500 mb-2">// Developer Configuration Object</div>
+                    <div className="text-slate-500 mb-2">// Developer Life</div>
                     <div>
                       <span className="text-purple-400">const</span>{" "}
                       <span className="text-blue-400">developer</span> = &#123;
@@ -228,10 +228,6 @@ export default function Hero() {
                     <div className="pl-4">
                       <span className="text-slate-400">name:</span>{" "}
                       <span className="text-emerald-400">"Carmelino Jadulco"</span>,
-                    </div>
-                    <div className="pl-4">
-                      <span className="text-slate-400">handle:</span>{" "}
-                      <span className="text-emerald-400">"Carms"</span>,
                     </div>
                     <div className="pl-4">
                       <span className="text-slate-400">role:</span>{" "}
@@ -266,15 +262,15 @@ export default function Hero() {
                     exit={{ opacity: 0, y: -4 }}
                     transition={{ duration: 0.15 }}
                   >
-                    <div className="text-slate-500 mb-2">// Honest Human Reality Check</div>
+                    <div className="text-slate-500 mb-2">// Reality Check</div>
                     <div>&#123;</div>
                     <div className="pl-4">
                       <span className="text-purple-300">"fuel"</span>:{" "}
-                      <span className="text-amber-400">"Cold brew, black ☕"</span>,
+                      <span className="text-white-400">"White Monster"</span>,
                     </div>
                     <div className="pl-4">
                       <span className="text-purple-300">"editor"</span>:{" "}
-                      <span className="text-emerald-400">"VS Code + JetBrains Mono"</span>,
+                      <span className="text-blue-400">"Antigravity"</span>,
                     </div>
                     <div className="pl-4">
                       <span className="text-purple-300">"focus"</span>:{" "}
@@ -282,13 +278,7 @@ export default function Hero() {
                     </div>
                     <div className="pl-4">
                       <span className="text-purple-300">"soundtrack"</span>:{" "}
-                      <span className="text-emerald-400">"Synthwave & Lo-Fi Beats 🎧"</span>,
-                    </div>
-                    <div className="pl-4">
-                      <span className="text-purple-300">"craft"</span>: [
-                      <span className="text-sky-300">"Type safety"</span>,{" "}
-                      <span className="text-sky-300">"Zero layout shift"</span>,{" "}
-                      <span className="text-sky-300">"Sub-second response"</span>]
+                      <span className="text-pink-400">"Synthwave & Lo-Fi Beats 🎧"</span>,
                     </div>
                     <div>&#125;</div>
                   </motion.div>
