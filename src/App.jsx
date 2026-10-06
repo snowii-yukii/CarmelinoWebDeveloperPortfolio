@@ -53,7 +53,7 @@ export default function App() {
       <Navbar />
 
       {/* Main Flow */}
-      <main className="relative z-10">
+      <main className="relative w-full min-h-screen overflow-x-hidden z-10">
         <Hero />
         <About />
         <Projects />
