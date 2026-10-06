@@ -155,11 +155,7 @@ export default function Hero() {
             {/* Window Topbar with Interactive Tabs & Copy */}
             <div className="flex items-center justify-between px-3.5 py-2.5 bg-slate-900/90 border-b border-white/8">
               <div className="flex items-center gap-2">
-                <div className="flex items-center gap-1.5 mr-2">
-                  <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80 inline-block" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80 inline-block" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80 inline-block" />
-                </div>
+                
 
                 {/* Tab Switchers */}
                 <div className="flex items-center bg-slate-950/80 p-0.5 rounded-lg border border-white/5">
@@ -172,7 +168,7 @@ export default function Hero() {
                     }`}
                   >
                     <Code2 className="w-3 h-3 text-blue-400" />
-                    <span>config.ts</span>
+                    <span>work.ts</span>
                   </button>
 
                   <button
@@ -184,7 +180,7 @@ export default function Hero() {
                     }`}
                   >
                     <Sparkles className="w-3 h-3 text-purple-400" />
-                    <span>personality.json</span>
+                    <span>life.json</span>
                   </button>
                 </div>
               </div>
@@ -246,11 +242,11 @@ export default function Hero() {
                     </div>
                     <div className="pl-4">
                       <span className="text-slate-400">database:</span>{" "}
-                      <span className="text-emerald-400">"PostgreSQL & Prisma"</span>,
+                      <span className="text-emerald-400">"PostgreSQL & Supabase"</span>,
                     </div>
                     <div className="pl-4">
-                      <span className="text-slate-400">focus:</span>{" "}
-                      <span className="text-emerald-400">"Full-stack apps with tactile UI & robust backends"</span>
+                      <span className="text-orange-400">focus:</span>{" "}
+                      <span className="text-emerald-400">"Growth"</span>
                     </div>
                     <div>&#125;;</div>
                   </motion.div>
@@ -269,16 +265,16 @@ export default function Hero() {
                       <span className="text-white-400">"White Monster"</span>,
                     </div>
                     <div className="pl-4">
-                      <span className="text-purple-300">"editor"</span>:{" "}
-                      <span className="text-blue-400">"Antigravity"</span>,
+                      <span className="text-green-300">"habitat"</span>:{" "}
+                      <span className="text-blue-400">"Discord"</span>,
                     </div>
                     <div className="pl-4">
-                      <span className="text-purple-300">"focus"</span>:{" "}
-                      <span className="text-emerald-400">"Full-stack apps, realtime data & clean APIs"</span>,
+                      <span className="text-orange-300">"focus"</span>:{" "}
+                      <span className="text-emerald-400">"Learning"</span>,
                     </div>
                     <div className="pl-4">
                       <span className="text-purple-300">"soundtrack"</span>:{" "}
-                      <span className="text-pink-400">"Synthwave & Lo-Fi Beats 🎧"</span>,
+                      <span className="text-pink-400">"Synth🎧"</span>,
                     </div>
                     <div>&#125;</div>
                   </motion.div>
@@ -288,10 +284,10 @@ export default function Hero() {
               <div className="mt-5 pt-3 border-t border-white/5 flex items-center justify-between text-[11px] text-slate-400">
                 <span className="flex items-center gap-1.5 text-emerald-400">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                  Interactive Preview
+                  Preview
                 </span>
                 <span className="text-slate-500 font-mono">
-                  {activeCodeTab === "config" ? "TypeScript (Strict)" : "Valid JSON"}
+                  {activeCodeTab === "config" ? "TypeScript" : "JSON"}
                 </span>
               </div>
             </div>

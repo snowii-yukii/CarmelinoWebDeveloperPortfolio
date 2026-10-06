@@ -71,7 +71,7 @@ export default function Navbar() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        className={`fixed max-w-screen top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled ? "py-3 bg-[#090D16]/85 backdrop-blur-xl border-b border-white/8 shadow-2xl shadow-black/40" : "py-5 bg-transparent"
         }`}
       >
@@ -167,7 +167,7 @@ export default function Navbar() {
           {/* Mobile Menu Toggle Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 text-slate-400 hover:text-white focus:outline-none rounded-lg bg-slate-900/60 border border-white/5"
+            className="sm:hidden p-2 text-slate-400 hover:text-white focus:outline-none rounded-lg bg-slate-900/60 border border-white/5"
             aria-label="Toggle Menu"
           >
             {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}

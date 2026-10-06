@@ -17,7 +17,7 @@ export default function Footer() {
             Carms<span className="font-mono text-xs text-blue-400 font-medium">.dev</span>
           </a>
           <p className="text-xs font-mono text-slate-400">
-            Handcrafted with intention in Davao City, PH 🌴
+            Davao City, PH 🌴
           </p>
           <p className="text-[11px] font-mono text-slate-500">
             &copy; {currentYear} Carmelino Jadulco. Next.js · Supabase · TypeScript · React 19 · Tailwind v4.
