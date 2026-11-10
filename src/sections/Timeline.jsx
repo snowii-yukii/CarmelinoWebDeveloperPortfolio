@@ -44,7 +44,7 @@ export default function Timeline() {
             Technical Journey.
           </h2>
           <p className="text-sm sm:text-base text-neutral-600 dark:text-neutral-400 max-w-xl mt-3 leading-relaxed">
-            From a first HTML file to full-stack production systems — two years of building progressively harder things.
+            From a first HTML file to full-stack production systems — a years of building progressively harder things.
           </p>
         </div>
 
