@@ -1,228 +1,135 @@
-import { useState } from "react";
+import { useState, memo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { 
-  Cpu, Layout, FileCode, Server, Database, GitBranch, Sparkles, Layers, Zap,
-  Globe, Bot, Terminal, ChevronDown, ChevronUp 
-} from "lucide-react";
-import Card from "../components/Card";
+import { Terminal } from "lucide-react";
+import TechIcon from "../components/TechIcon";
 
-const ARSENAL = [
-  {
-    name: "Next.js",
-    category: "Full Stack",
-    tag: "App Router & SSR",
-    description: "Server components, server actions, dynamic routing, and fast edge rendering.",
-    icon: Globe,
-  },
-  {
-    name: "Supabase",
-    category: "Full Stack",
-    tag: "PostgreSQL & Auth",
-    description: "Relational database, Row-Level Security (RLS), realtime subscriptions, and auth.",
-    icon: Database,
-  },
-  {
-    name: "TypeScript",
-    category: "Full Stack",
-    tag: "Type Safety",
-    description: "Strict end-to-end type safety spanning database schemas, API routes, and UI state.",
-    icon: FileCode,
-  },
-  {
-    name: "React 19",
-    category: "Frontend",
-    tag: "Core UI Engine",
-    description: "Modern hooks, concurrent rendering, and reactive component hierarchies.",
-    icon: Cpu,
-  },
-  {
-    name: "Tailwind CSS v4",
-    category: "Frontend",
-    tag: "Modern Styling",
-    description: "Token-based architecture, modern CSS variables, and fluid responsive design.",
-    icon: Layout,
-  },
-  {
-    name: "Framer Motion",
-    category: "Frontend",
-    tag: "Physics & Motion",
-    description: "Spring physics animations, layout transitions, and tactile micro-interactions.",
-    icon: Zap,
-  },
-  {
-    name: "Node.js & Express",
-    category: "Backend",
-    tag: "Runtime & APIs",
-    description: "REST endpoints, CORS configuration, payload validation, and clean routing.",
-    icon: Server,
-  },
-  {
-    name: "Prisma & PostgreSQL",
-    category: "Backend",
-    tag: "ORM & Schema",
-    description: "Declarative schema modeling, automated migrations, and relational queries.",
-    icon: Database,
-  },
-  {
-    name: "REST APIs & Webhooks",
-    category: "Backend",
-    tag: "Data Pipelines",
-    description: "Live telemetry integration, error boundaries, debouncing, and client caching.",
-    icon: Layers,
-  },
-  {
-    name: "Git & GitHub",
-    category: "Tools",
-    tag: "Version Control",
-    description: "Commit hygiene, feature branching, pull requests, and automated deploys.",
-    icon: GitBranch,
-  },
-  {
-    name: "Claude Code & Antigravity",
-    category: "Tools",
-    tag: "Agentic Engineering",
-    description: "Agentic pair programming, multi-step orchestration, and rapid iteration.",
-    icon: Terminal,
-  },
-  {
-    name: "Vercel & Edge Deployment",
-    category: "Tools",
-    tag: "Infrastructure",
-    description: "Zero-config serverless deployments, preview branches, and global CDN edge routing.",
-    icon: Bot,
-  },
+const STACK_DATA = [
+  // Frontend & Full Stack
+  { name: "Next.js", iconKey: "nextjs", category: "Frontend & Full Stack", color: "#71717a", lightColor: "#52525b" },
+  { name: "React 19", iconKey: "react", category: "Frontend & Full Stack", color: "#61DAFB", lightColor: "#0284c7" },
+  { name: "TypeScript", iconKey: "typescript", category: "Frontend & Full Stack", color: "#3178C6", lightColor: "#2563eb" },
+  { name: "Tailwind CSS v4", iconKey: "tailwindcss", category: "Frontend & Full Stack", color: "#38BDF8", lightColor: "#0284c7" },
+  { name: "shadcn/ui", iconKey: "shadcn", category: "Frontend & Full Stack", color: "#a1a1aa", lightColor: "#52525b" },
+  { name: "REST APIs", iconKey: "restapi", category: "Frontend & Full Stack", color: "#a1a1aa", lightColor: "#52525b" },
+  { name: "JavaScript", iconKey: "javascript", category: "Frontend & Full Stack", color: "#F7DF1E", lightColor: "#ca8a04" },
+  { name: "HTML5", iconKey: "html", category: "Frontend & Full Stack", color: "#E34F26", lightColor: "#dc2626" },
+  { name: "CSS3", iconKey: "css", category: "Frontend & Full Stack", color: "#1572B6", lightColor: "#2563eb" },
+
+  // Backend & Database
+  { name: "Supabase", iconKey: "supabase", category: "Backend & Database", color: "#3ECF8E", lightColor: "#16a34a" },
+  { name: "PostgreSQL", iconKey: "postgresql", category: "Backend & Database", color: "#4169E1", lightColor: "#2563eb" },
+  { name: "Node.js", iconKey: "nodejs", category: "Backend & Database", color: "#5FA04E", lightColor: "#16a34a" },
+  { name: "Express.js", iconKey: "express", category: "Backend & Database", color: "#71717a", lightColor: "#52525b" },
+  { name: "MongoDB", iconKey: "mongodb", category: "Backend & Database", color: "#47A248", lightColor: "#16a34a" },
+  { name: "MySQL", iconKey: "mysql", category: "Backend & Database", color: "#4479A1", lightColor: "#0284c7" },
+
+  // Tools & AI
+  { name: "Google Antigravity", iconKey: "antigravity", category: "Tools & AI", color: "#4285F4", lightColor: "#2563eb" },
+  { name: "Claude Code", iconKey: "claude", category: "Tools & AI", color: "#D97706", lightColor: "#d97706" },
+  { name: "Cursor AI", iconKey: "cursor", category: "Tools & AI", color: "#a1a1aa", lightColor: "#52525b" },
+  { name: "Git", iconKey: "git", category: "Tools & AI", color: "#F05032", lightColor: "#dc2626" },
+  { name: "GitHub", iconKey: "github", category: "Tools & AI", color: "#a1a1aa", lightColor: "#52525b" },
+  { name: "Gemini", iconKey: "gemini", category: "Tools & AI", color: "#4E8BF5", lightColor: "#2563eb" },
+  { name: "OpenAI", iconKey: "openai", category: "Tools & AI", color: "#10A37F", lightColor: "#0d9488" },
+  { name: "VS Code", iconKey: "vscode", category: "Tools & AI", color: "#007ACC", lightColor: "#0284c7" },
 ];
 
-const CATEGORIES = ["All", "Full Stack", "Frontend", "Backend", "Tools"];
-const INITIAL_DISPLAY_COUNT = 6;
+const CATEGORIES = ["All", "Frontend & Full Stack", "Backend & Database", "Tools & AI"];
+
+const TechStackPill = memo(function TechStackPill({ tech }) {
+  const [glowStyle, setGlowStyle] = useState({});
+
+  const handleMouseEnter = () => {
+    // Read dark mode from DOM at interaction time — no React context subscription needed
+    const isDark = document.documentElement.classList.contains("dark");
+    const color = isDark ? tech.color : tech.lightColor;
+    setGlowStyle({
+      borderColor: color,
+      boxShadow: `0 0 14px -2px ${color}${isDark ? "80" : "40"}`,
+    });
+  };
+
+  const handleMouseLeave = () => {
+    setGlowStyle({});
+  };
+
+  return (
+    <div
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      style={glowStyle}
+      className="group flex items-center gap-3 px-4 py-2.5 rounded-xl bg-white dark:bg-neutral-900/70 border border-neutral-200/90 dark:border-white/10 hover:bg-neutral-50 dark:hover:bg-neutral-850 transition-colors duration-200 cursor-default shadow-sm dark:shadow-none active:scale-95"
+    >
+      <div className="w-5 h-5 flex items-center justify-center shrink-0 opacity-95 group-hover:opacity-100 group-hover:scale-115 transition-transform duration-300">
+        <TechIcon name={tech.iconKey} className="w-4.5 h-4.5" />
+      </div>
+      <span className="text-xs font-mono font-medium text-neutral-700 dark:text-neutral-300 group-hover:text-black dark:group-hover:text-white transition-colors whitespace-nowrap">
+        {tech.name}
+      </span>
+    </div>
+  );
+});
 
 export default function TechStack() {
   const [activeCategory, setActiveCategory] = useState("All");
-  const [showAll, setShowAll] = useState(false);
 
-  const filteredArsenal = activeCategory === "All"
-    ? ARSENAL
-    : ARSENAL.filter(item => item.category === activeCategory);
-
-  const displayedArsenal = (activeCategory === "All" && !showAll)
-    ? filteredArsenal.slice(0, INITIAL_DISPLAY_COUNT)
-    : filteredArsenal;
-
-  const remainingCount = filteredArsenal.length - INITIAL_DISPLAY_COUNT;
+  const filteredItems = activeCategory === "All"
+    ? STACK_DATA
+    : STACK_DATA.filter((item) => item.category === activeCategory);
 
   return (
-    <section id="capabilities" className="py-20 relative bg-slate-950/20">
+    <section id="stack" className="py-24 relative border-t border-neutral-200/80 dark:border-white/10 bg-neutral-50/50 dark:bg-black/30">
       <div className="max-w-7xl mx-auto px-6">
         
         {/* Section Header */}
-        <div className="flex flex-col items-start mb-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-mono mb-3">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Stack & Architecture</span>
+        <div className="flex flex-col items-start mb-12">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-white/10 text-neutral-800 dark:text-neutral-300 text-xs font-mono mb-4">
+            <Terminal className="w-3.5 h-3.5" />
+            <span>Architecture & Tooling</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight">
+          <h2 className="text-3xl sm:text-5xl font-extrabold text-neutral-950 dark:text-white tracking-tight leading-tight">
             Technical Arsenal
           </h2>
 
-          <p className="text-slate-400 max-w-xl mt-2 text-sm leading-relaxed">
-            The core full-stack frameworks, databases, and tooling I use to engineer robust, high-performance web applications.
+          <p className="text-sm sm:text-base text-neutral-600 dark:text-neutral-400 max-w-2xl mt-3 leading-relaxed">
+            The full-stack frameworks, databases, and AI tooling I use to build web applications.
           </p>
 
-        {/* Category Filter Pills with Item Counts */}
-          <div className="flex flex-wrap gap-2 mt-6 p-1.5 rounded-xl bg-slate-900/80 border border-white/10 backdrop-blur-md">
-            {CATEGORIES.map(category => {
-              const count = category === "All" 
-                ? ARSENAL.length 
-                : ARSENAL.filter(item => item.category === category).length;
-
-              return (
-                <button
-                  key={category}
-                  onClick={() => {
-                    setActiveCategory(category);
-                    setShowAll(false);
-                  }}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-medium transition-all duration-200 cursor-pointer ${
-                    activeCategory === category
-                      ? "bg-blue-600 text-white shadow-md shadow-blue-500/25"
-                      : "text-slate-400 hover:text-white hover:bg-slate-800/60"
-                  }`}
-                >
-                  <span>{category}</span>
-                  <span className={`text-[10px] px-1.5 py-0.2 rounded-full ${
-                    activeCategory === category 
-                      ? "bg-blue-700/60 text-blue-100" 
-                      : "bg-slate-800 text-slate-400"
-                  }`}>
-                    {count}
-                  </span>
-                </button>
-              );
-            })}
+          {/* Category Filter Pills */}
+          <div className="flex flex-wrap gap-2 mt-7 p-1 rounded-xl bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-white/10 backdrop-blur-md">
+            {CATEGORIES.map((category) => (
+              <button
+                key={category}
+                onClick={() => setActiveCategory(category)}
+                className={`px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium transition-all duration-200 active:scale-95 cursor-pointer ${
+                  activeCategory === category
+                    ? "bg-white text-neutral-950 shadow-sm font-semibold dark:bg-white dark:text-black"
+                    : "text-neutral-600 hover:text-black hover:bg-neutral-200/60 dark:text-neutral-400 dark:hover:text-white dark:hover:bg-neutral-800/80"
+                }`}
+              >
+                {category}
+              </button>
+            ))}
           </div>
         </div>
 
-        {/* Arsenal Grid */}
-        <motion.div
-          layout
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
-        >
+        {/* Tech Stack Pills Cloud */}
+        <div className="flex flex-wrap gap-3.5 items-center">
           <AnimatePresence mode="popLayout">
-            {displayedArsenal.map((tech, idx) => {
-              const Icon = tech.icon;
-              return (
-                <motion.div
-                  key={tech.name}
-                  layout
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.25, delay: idx * 0.02 }}
-                  className="h-full"
-                >
-                  <Card className="h-full flex flex-col justify-between p-5" hover={true}>
-                    <div>
-                      <div className="flex items-center justify-between mb-3">
-                        <div className="p-2 rounded-xl bg-slate-900 border border-white/10 text-blue-400">
-                          <Icon className="w-4 h-4" />
-                        </div>
-                        <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 px-2 py-0.5 rounded bg-slate-900/80 border border-white/5">
-                          {tech.tag}
-                        </span>
-                      </div>
-
-                      <h3 className="text-base font-bold text-white mb-1.5 tracking-tight">
-                        {tech.name}
-                      </h3>
-
-                      <p className="text-xs text-slate-400 leading-relaxed">
-                        {tech.description}
-                      </p>
-                    </div>
-                  </Card>
-                </motion.div>
-              );
-            })}
+            {filteredItems.map((tech, index) => (
+              <motion.div
+                key={tech.name}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.2, delay: index * 0.015 }}
+              >
+                <TechStackPill tech={tech} />
+              </motion.div>
+            ))}
           </AnimatePresence>
-        </motion.div>
-
-        {/* Tactile Show More / Show Less Toggle Button */}
-        {activeCategory === "All" && remainingCount > 0 && (
-          <div className="flex justify-center mt-10">
-            <motion.button
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-              onClick={() => setShowAll(!showAll)}
-              className="group inline-flex items-center gap-2.5 px-6 py-3 rounded-xl bg-slate-900 hover:bg-slate-850 border border-white/10 hover:border-blue-500/40 text-slate-200 hover:text-white text-xs font-mono font-semibold transition-all duration-300 cursor-pointer shadow-lg hover:shadow-blue-500/10"
-            >
-              <span>{showAll ? "Show Less" : `Show All Tools (+${remainingCount} more)`}</span>
-              <div className="p-1 rounded-lg bg-slate-800 text-blue-400 group-hover:bg-blue-600 group-hover:text-white transition-colors">
-                {showAll ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
-              </div>
-            </motion.button>
-          </div>
-        )}
+        </div>
 
       </div>
     </section>

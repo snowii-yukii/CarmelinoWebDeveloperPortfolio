@@ -1,26 +1,20 @@
-import { useState } from "react";
-import { Github, ExternalLink, Monitor, Smartphone, Sparkles, Cpu } from "lucide-react";
+import { useState, useEffect } from "react";
+import { ExternalLink, Layers, Maximize2, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Card from "../components/Card";
+import TechIcon from "../components/TechIcon";
 
 import weatherAppImg from "../assets/weatherapp.png";
-import weatherAppMobileImg from "../assets/weatherappmobile.png";
 import landingPageImg from "../assets/landingpage.png";
-import landingPageMobileImg from "../assets/landingpagemobile.png";
 import observedImg from "../assets/observed.png";
 
 const PROJECTS_DATA = [
   {
     id: "weatherpulse",
     title: "WeatherPulse",
-    fullName: "Next.js & TypeScript Weather Intelligence",
     category: "Web App",
-    badge: "Next.js App",
-    summary: "Meteorological intelligence platform tracking real-time global atmospheric conditions, 5-day forecasts, and granular air quality indices.",
-    engineeringHighlight: "Engineered with Next.js App Router and TypeScript. Employs server-side data fetching, client caching, and instantaneous unit calculations without redundant network overhead.",
-    desktopImage: weatherAppImg,
-    mobileImage: weatherAppMobileImg,
-    tags: ["Next.js", "TypeScript", "Tailwind CSS", "REST APIs"],
+    description: "Weather app providing real-time local conditions, 5-day forecasts, and air quality metrics.",
+    image: weatherAppImg, CSS,
     github: "https://github.com/snowii-yukii/weatherv2",
     demo: "https://weatherv2-inky.vercel.app",
     domain: "weatherv2.vercel.app"
@@ -28,14 +22,15 @@ const PROJECTS_DATA = [
   {
     id: "beats3-landing",
     title: "Beats 3 Showcase",
-    fullName: "Tactile Product Showcase Experience",
     category: "Web App",
-    badge: "Interactive UI",
-    summary: "Commercial product showcase engineered for audio hardware, pairing dark aesthetics with non-linear spring motion and fluid responsive media.",
-    engineeringHighlight: "Responsive layout architecture with Framer Motion spring physics. Smooth gesture feedback, scroll reveals, and hardware-accelerated transforms.",
-    desktopImage: landingPageImg,
-    mobileImage: landingPageMobileImg,
-    tags: ["React 19", "Tailwind CSS", "Framer Motion", "Responsive Design"],
+    description: "Responsive product landing page showcasing audio headphones with smooth interactive animations.",
+    features: [
+      "Interactive 360° product presentation",
+      "Smooth spring scroll animations",
+      "Audio specs & feature breakdown",
+      "Fully responsive mobile layout",
+    ],
+    image: landingPageImg,
     github: "https://github.com/snowii-yukii/Responsive-Landing-Page",
     demo: "https://snowii-yukii.github.io/Responsive-Landing-Page/",
     domain: "beats3-showcase.app"
@@ -43,242 +38,228 @@ const PROJECTS_DATA = [
   {
     id: "observed",
     title: "Observed",
-    fullName: "Interactive Eye-Tracking Canvas Physics",
     category: "Creative Dev",
-    badge: "Math & Physics",
-    summary: "Experimental human-computer interaction (HCI) translating cursor and touch coordinates into lifelike ocular pupil dynamics in real time.",
-    engineeringHighlight: "Boundary-constrained trigonometry math (Math.atan2, Math.hypot) coupled with hardware-accelerated CSS transforms at a consistent 60 FPS.",
-    desktopImage: observedImg,
-    mobileImage: null,
-    tags: ["React 19", "Trigonometry Math", "CSS Transforms", "Vector Graphics"],
+    description: "Interactive eyeball canvas animation that tracks the user's cursor or touch position in real time.",
+    image: observedImg,
     github: "https://github.com/snowii-yukii/Observed",
     demo: "https://observed-five.vercel.app",
     domain: "observed-lab.app"
   }
 ];
 
-const CATEGORIES = ["All", "Web App", "Creative Dev"];
-
 export default function Projects() {
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [zoomModal, setZoomModal] = useState(null);
 
-  // Device preview mode state for each project ("desktop" | "mobile")
-  const [deviceModes, setDeviceModes] = useState(
-    PROJECTS_DATA.reduce((acc, p) => ({ ...acc, [p.id]: "desktop" }), {})
-  );
-
-  const toggleDeviceMode = (projectId, mode) => {
-    setDeviceModes(prev => ({ ...prev, [projectId]: mode }));
-  };
-
-  const filteredProjects = selectedCategory === "All"
-    ? PROJECTS_DATA
-    : PROJECTS_DATA.filter(p => p.category === selectedCategory);
+  // Close modal on ESC
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") setZoomModal(null);
+    };
+    if (zoomModal) {
+      window.addEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "unset";
+    };
+  }, [zoomModal]);
 
   return (
-    <section id="projects" className="py-20 relative bg-slate-950/30">
-      {/* Background ambient lighting */}
-      <div className="absolute top-1/3 right-10 w-96 h-96 rounded-full bg-blue-500/5 blur-[120px] pointer-events-none -z-10" />
-      <div className="absolute bottom-10 left-10 w-96 h-96 rounded-full bg-indigo-500/5 blur-[120px] pointer-events-none -z-10" />
-
+    <section id="projects" className="py-24 relative">
       <div className="max-w-7xl mx-auto px-6">
+        
         {/* Section Header */}
-        <div className="flex flex-col items-start mb-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-mono mb-3">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Featured Case Studies</span>
+        <div className="flex flex-col items-start mb-12">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-white/10 text-neutral-800 dark:text-neutral-300 text-xs font-mono mb-4">
+            <Layers className="w-3.5 h-3.5" />
+            <span>Projects</span>
           </div>
           
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight">
-            Selected Work & Production Builds
+          <h2 className="text-3xl sm:text-5xl font-extrabold text-neutral-950 dark:text-white tracking-tight leading-tight">
+            Selected Work
           </h2>
           
-          <p className="text-sm sm:text-base text-slate-400 max-w-2xl mt-2 leading-relaxed">
-            Real software deployed to production. Built with modern architecture, type-safe data flows, and responsive UI craft.
+          <p className="text-sm sm:text-base text-neutral-600 dark:text-neutral-400 max-w-xl mt-3 leading-relaxed">
+            A small collection of web applications and interactive experiments I've built and deployed.
           </p>
-
-          {/* Category Filter Pills */}
-          <div className="flex flex-wrap gap-2 mt-6 p-1.5 rounded-xl bg-slate-900/80 border border-white/10 backdrop-blur-md">
-            {CATEGORIES.map(category => (
-              <button
-                key={category}
-                onClick={() => setSelectedCategory(category)}
-                className={`px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium transition-all duration-200 cursor-pointer ${
-                  selectedCategory === category
-                    ? "bg-blue-600 text-white shadow-md shadow-blue-500/25"
-                    : "text-slate-400 hover:text-white hover:bg-slate-800/60"
-                }`}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-7 items-stretch">
           <AnimatePresence mode="popLayout">
-            {filteredProjects.map((project, i) => {
-              const currentDevice = deviceModes[project.id] || "desktop";
-              const activeImage = currentDevice === "mobile" && project.mobileImage 
-                ? project.mobileImage 
-                : project.desktopImage;
-
-              return (
-                <motion.div
-                  key={project.id}
-                  layout
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.35, delay: i * 0.08 }}
-                  className="h-full flex"
-                >
-                  <Card className="flex flex-col h-full w-full justify-between p-5 sm:p-6 gap-5" hover={true}>
-                    
-                    <div className="flex flex-col gap-4">
-                      {/* Project Media Showcase Window */}
-                      <div className="relative rounded-xl overflow-hidden border border-white/10 bg-slate-950 group shadow-lg">
-                        {/* Mock Browser Top Header Bar */}
-                        <div className="flex items-center justify-between px-3 py-2 bg-slate-900/90 border-b border-white/10">
-                          {/* Window Control Dots */}
-                          <div className="flex items-center gap-1.5">
-                            <span className="w-2 h-2 rounded-full bg-rose-500/80 inline-block" />
-                            <span className="w-2 h-2 rounded-full bg-amber-500/80 inline-block" />
-                            <span className="w-2 h-2 rounded-full bg-emerald-500/80 inline-block" />
-                          </div>
-
-                          {/* Domain slug */}
-                          <span className="text-[11px] font-mono text-slate-400 truncate max-w-[140px]">
-                            {project.domain}
-                          </span>
-
-                          {/* Device Preview Mode Switch */}
-                          <div>
-                            {project.mobileImage ? (
-                              <div className="flex bg-slate-950 rounded-lg p-0.5 border border-white/10">
-                                <button
-                                  onClick={() => toggleDeviceMode(project.id, "desktop")}
-                                  title="Desktop View"
-                                  className={`p-1 rounded text-xs cursor-pointer transition ${
-                                    currentDevice === "desktop"
-                                      ? "bg-blue-600 text-white"
-                                      : "text-slate-400 hover:text-white"
-                                  }`}
-                                >
-                                  <Monitor className="w-3 h-3" />
-                                </button>
-                                <button
-                                  onClick={() => toggleDeviceMode(project.id, "mobile")}
-                                  title="Mobile View"
-                                  className={`p-1 rounded text-xs cursor-pointer transition ${
-                                    currentDevice === "mobile"
-                                      ? "bg-blue-600 text-white"
-                                      : "text-slate-400 hover:text-white"
-                                  }`}
-                                >
-                                  <Smartphone className="w-3 h-3" />
-                                </button>
-                              </div>
-                            ) : (
-                              <span className="text-[9px] font-mono uppercase font-bold text-blue-400 bg-blue-500/10 px-1.5 py-0.5 rounded border border-blue-500/20">
-                                {project.badge}
-                              </span>
-                            )}
-                          </div>
+            {PROJECTS_DATA.map((project, i) => (
+              <motion.div
+                key={project.id}
+                layout
+                initial={{ opacity: 0, y: 18 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.98 }}
+                transition={{ duration: 0.35, delay: i * 0.08 }}
+                className="h-full flex"
+              >
+                <Card className="flex flex-col h-full w-full justify-between p-5 gap-4" hover={true}>
+                  
+                  <div className="flex flex-col gap-4">
+                    {/* Project Preview Window */}
+                    <div className="relative rounded-xl overflow-hidden border border-neutral-200 dark:border-white/10 bg-neutral-100 dark:bg-neutral-950 group shadow-xs">
+                      {/* Top Header Bar */}
+                      <div className="flex items-center justify-between px-3 py-2 bg-neutral-100/90 dark:bg-neutral-900/90 border-b border-neutral-200 dark:border-white/10">
+                        <div className="flex items-center gap-1.5">
+                          <span className="w-2 h-2 rounded-full bg-rose-500/80 inline-block" />
+                          <span className="w-2 h-2 rounded-full bg-amber-500/80 inline-block" />
+                          <span className="w-2 h-2 rounded-full bg-emerald-500/80 inline-block" />
                         </div>
-
-                        {/* Project Image Canvas */}
-                        <div className="relative aspect-16/10 w-full overflow-hidden bg-slate-950 flex items-center justify-center">
-                          <img
-                            src={activeImage}
-                            alt={project.title}
-                            className={`w-full h-full transition-transform duration-500 group-hover:scale-105 ${
-                              currentDevice === "mobile" ? "object-contain py-2" : "object-cover object-top"
-                            }`}
-                          />
-                        </div>
+                        <span className="text-[11px] font-mono text-neutral-500 dark:text-neutral-400 truncate max-w-[150px]">
+                          {project.domain}
+                        </span>
+                        <span className="text-[10px] font-mono text-neutral-500 dark:text-neutral-400">
+                          {project.category}
+                        </span>
                       </div>
 
-                      {/* Title & Metadata */}
-                      <div>
-                        <div className="flex items-center gap-2 mb-1.5">
-                          <span className="text-[10px] font-mono font-semibold text-blue-400 bg-blue-500/10 px-2 py-0.5 rounded border border-blue-500/20">
-                            {project.category}
-                          </span>
-                          <span className="text-[10px] font-mono text-slate-500">
-                            · {project.badge}
-                          </span>
-                        </div>
-
-                        <h3 className="text-lg font-bold text-white leading-tight tracking-tight">
-                          {project.title}
-                        </h3>
-                        <p className="text-xs text-slate-400 font-mono mt-0.5 mb-2.5">
-                          {project.fullName}
-                        </p>
-
-                        <p className="text-xs text-slate-300 leading-relaxed mb-3">
-                          {project.summary}
-                        </p>
-
-                        {/* Engineering Highlight Box (The Technical Flex) */}
-                        <div className="p-3 rounded-xl bg-blue-500/5 border border-blue-500/15 mb-3">
-                          <div className="flex items-center gap-1.5 text-[10px] font-mono font-bold uppercase tracking-wider text-blue-400 mb-1">
-                            <Cpu className="w-3 h-3" />
-                            <span>Engineering Feat</span>
-                          </div>
-                          <p className="text-[11px] text-slate-300 leading-relaxed">
-                            {project.engineeringHighlight}
-                          </p>
-                        </div>
-
-                        {/* Technology Badges */}
-                        <div className="flex flex-wrap gap-1.5">
-                          {project.tags.map(tag => (
-                            <span
-                              key={tag}
-                              className="text-[10px] font-mono text-slate-300 bg-slate-900/90 px-2 py-0.5 rounded border border-white/8"
-                            >
-                              {tag}
-                            </span>
-                          ))}
+                      {/* Image Preview with Zoom */}
+                      <div
+                        onClick={() => setZoomModal(project)}
+                        className="relative aspect-16/10 w-full overflow-hidden bg-neutral-100 dark:bg-neutral-950 flex items-center justify-center cursor-zoom-in"
+                      >
+                        <img
+                          src={project.image}
+                          alt={project.title}
+                          loading="lazy"
+                          className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+                        />
+                        <div className="absolute bottom-2 right-2 p-1.5 rounded-lg bg-black/60 dark:bg-black/70 border border-white/20 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                          <Maximize2 className="w-3.5 h-3.5" />
                         </div>
                       </div>
                     </div>
 
-                    {/* Action Buttons */}
-                    <div className="pt-3.5 border-t border-white/10 flex items-center gap-2.5">
-                      <a
-                        href={project.demo}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex-1 inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs transition-all shadow-md shadow-blue-500/20 cursor-pointer"
-                      >
-                        <span>Live Demo</span>
-                        <ExternalLink className="w-3.5 h-3.5" />
-                      </a>
+                    {/* Content Section */}
+                    <div>
+                      {/* Title */}
+                      <h3 className="text-lg font-bold text-neutral-950 dark:text-white leading-tight tracking-tight mb-1.5">
+                        {project.title}
+                      </h3>
 
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-white/10 hover:border-white/20 font-semibold text-xs transition-all cursor-pointer"
-                        title="GitHub Repository"
-                      >
-                        <Github className="w-3.5 h-3.5" />
-                        <span className="sr-only sm:not-sr-only">Code</span>
-                      </a>
+                      {/* Plain, clear summary */}
+                      <p className="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed mb-3.5">
+                        {project.description}
+                      </p>
+
                     </div>
+                  </div>
 
-                  </Card>
-                </motion.div>
-              );
-            })}
+                  {/* Clean Action Buttons */}
+                  <div className="pt-3 border-t border-neutral-200/80 dark:border-white/8 flex items-center gap-2">
+                    <a
+                      href={project.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg bg-neutral-950 text-white hover:bg-neutral-800 dark:bg-white dark:hover:bg-neutral-200 dark:text-black font-semibold text-xs transition-all shadow-xs active:scale-95 cursor-pointer"
+                    >
+                      <span>Live Demo</span>
+                      <ExternalLink className="w-3.5 h-3.5" />
+                    </a>
+
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg bg-white text-neutral-800 border border-neutral-200 hover:bg-neutral-100 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-300 dark:hover:text-white dark:border-white/10 text-xs font-semibold transition-all active:scale-95 cursor-pointer shadow-xs"
+                      title="GitHub Repository"
+                    >
+                      <TechIcon name="github" className="w-3.5 h-3.5" />
+                      <span>Code</span>
+                    </a>
+                  </div>
+
+                </Card>
+              </motion.div>
+            ))}
           </AnimatePresence>
         </div>
+
       </div>
+
+      {/* Lightbox Modal */}
+      <AnimatePresence>
+        {zoomModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setZoomModal(null)}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 dark:bg-black/85 backdrop-blur-md p-4 sm:p-6"
+          >
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              transition={{ type: "spring", stiffness: 350, damping: 25 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative max-w-4xl w-full bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-white/15 rounded-2xl overflow-hidden shadow-2xl flex flex-col"
+            >
+              {/* Modal Topbar */}
+              <div className="flex items-center justify-between px-4 py-3 bg-neutral-50 dark:bg-neutral-950 border-b border-neutral-200 dark:border-white/10">
+                <div className="flex items-center gap-2">
+                  <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
+                  <span className="text-xs font-mono text-neutral-800 dark:text-neutral-300 ml-2 font-semibold">
+                    {zoomModal.title} · {zoomModal.domain}
+                  </span>
+                </div>
+                <button
+                  onClick={() => setZoomModal(null)}
+                  className="p-1 rounded-lg text-neutral-500 hover:text-black hover:bg-neutral-200 dark:text-neutral-400 dark:hover:text-white dark:hover:bg-neutral-800 transition-colors cursor-pointer"
+                  aria-label="Close Preview"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+
+              {/* Modal Image View */}
+              <div className="max-h-[70vh] overflow-auto bg-neutral-100 dark:bg-neutral-950 flex items-center justify-center p-2">
+                <img
+                  src={zoomModal.image}
+                  alt={zoomModal.title}
+                  className="w-full h-auto max-h-[68vh] object-contain rounded-lg"
+                />
+              </div>
+
+              {/* Modal Bottom Actions */}
+              <div className="px-5 py-3.5 bg-neutral-50 dark:bg-neutral-950 border-t border-neutral-200 dark:border-white/10 flex items-center justify-between gap-4">
+                <span className="text-xs text-neutral-600 dark:text-neutral-400 truncate hidden sm:inline">
+                  {zoomModal.description}
+                </span>
+                <div className="flex items-center gap-2 w-full sm:w-auto">
+                  <a
+                    href={zoomModal.demo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-lg bg-neutral-950 text-white hover:bg-neutral-800 dark:bg-white dark:hover:bg-neutral-200 dark:text-black font-semibold text-xs transition-all active:scale-95 shadow-sm cursor-pointer"
+                  >
+                    <span>Launch Demo</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                  <a
+                    href={zoomModal.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-lg bg-white text-neutral-800 border border-neutral-200 hover:bg-neutral-100 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-200 dark:border-white/10 text-xs font-semibold transition-all active:scale-95 shadow-sm cursor-pointer"
+                  >
+                    <TechIcon name="github" className="w-3.5 h-3.5" />
+                    <span>Source</span>
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
-

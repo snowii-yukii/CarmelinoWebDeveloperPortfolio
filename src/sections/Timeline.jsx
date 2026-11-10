@@ -1,117 +1,120 @@
 import { motion } from "framer-motion";
-import { GraduationCap, Code2, Server, Compass, Lightbulb } from "lucide-react";
+import { GraduationCap, Code2, Compass, Lightbulb } from "lucide-react";
 
 const TIMELINE_EVENTS = [
   {
-    year: "2024 (Q1-Q2)",
-    title: "HTML, CSS & Web Foundations",
-    description: "Began with semantic HTML5, modern CSS3 layout (Grid, Flexbox), and responsive design principles. First real deployments to Vercel.",
+    year: "2026 · Q1",
+    title: "Web Foundations & UI Engineering",
+    description: "Mastered semantic HTML5, modern CSS layouts (Grid, Flexbox), and responsive UI patterns. Transitioned from static concepts to building and deploying production-ready client interfaces on Vercel.",
     icon: GraduationCap,
+    index: "01",
   },
   {
-    year: "2024 (Q3-Q4)",
-    title: "JavaScript & Interactive Interfaces",
-    description: "Moved into ES6+ JavaScript, DOM manipulation, and event-driven patterns. Built interactive UI components from scratch.",
+    year: "2026 · Q2–Q3",
+    title: "Full-Stack JavaScript & RESTful Services",
+    description: "Built scalable full-stack apps using React, Node.js, Express, and MongoDB. Designed REST APIs, implemented JWT authentication, managed state with modern React hooks, and handled end-to-end CRUD operations.",
     icon: Lightbulb,
+    index: "02",
   },
   {
-    year: "2025 (Q1-Q2)",
-    title: "React SPA & Component Architecture",
-    description: "Adopted React — hooks, context, state management, Framer Motion animations, and reusable component systems with Tailwind CSS.",
+    year: "2026 · Q4",
+    title: "Next.js, PostgreSQL & System Architecture",
+    description: "Engineering performant, production-grade systems with Next.js App Router, TypeScript, and relational PostgreSQL databases. Focused on Server Actions, SSR/SSG caching strategies, and robust data schema design.",
     icon: Code2,
-  },
-  {
-    year: "2025 (Q3-Q4)",
-    title: "Backend & RESTful API Engineering",
-    description: "Built production-grade REST APIs with Node.js, Express, PostgreSQL, Prisma, and JWT authentication. First full-stack deployments.",
-    icon: Server,
-  },
-  {
-    year: "2026 (Now)",
-    title: "Next.js, Supabase & Full-Stack Systems",
-    description: "Currently building full-stack apps with Next.js App Router, Supabase PostgreSQL & RLS, TypeScript, and AI-augmented engineering workflows.",
-    icon: Compass,
+    index: "03",
+    isCurrent: true,
   },
 ];
 
 export default function Timeline() {
   return (
-    <section id="timeline" className="py-20 relative bg-slate-950/10">
+    <section
+      id="timeline"
+      className="py-24 relative border-t border-neutral-200/80 dark:border-white/8"
+    >
       <div className="max-w-7xl mx-auto px-6">
+
         {/* Section Header */}
-        <div className="flex flex-col items-start mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-mono mb-3">
+        <div className="flex flex-col items-start mb-14">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-white/10 text-neutral-800 dark:text-neutral-300 text-xs font-mono mb-4">
             <Compass className="w-3.5 h-3.5" />
             <span>Learning Path</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight">
-            Technical Journey
+          <h2 className="text-3xl sm:text-5xl font-extrabold text-neutral-950 dark:text-white tracking-tight leading-tight">
+            Technical Journey.
           </h2>
-          <p className="text-sm text-slate-400 max-w-lg mt-2 leading-relaxed">
-            From first HTML file to full-stack production deployments — two years of building progressively complex systems.
+          <p className="text-sm sm:text-base text-neutral-600 dark:text-neutral-400 max-w-xl mt-3 leading-relaxed">
+            From a first HTML file to full-stack production systems — two years of building progressively harder things.
           </p>
         </div>
 
-        {/* Vertical Timeline container */}
-        <div className="relative max-w-3xl mx-auto pl-6 md:pl-0">
-          {/* Vertical Center Line (Desktop) / Left Line (Mobile) */}
-          <div className="absolute left-[21px] md:left-1/2 top-0 bottom-0 w-[1.5px] bg-slate-800 -translate-x-1/2" />
+        {/* Timeline */}
+        <div className="relative max-w-2xl">
+          {/* Vertical rule */}
+          <div className="absolute left-[19px] top-2 bottom-2 w-px bg-neutral-200 dark:bg-white/8" />
 
-          {/* Timeline Events */}
-          <div className="space-y-12">
-            {TIMELINE_EVENTS.map((event, index) => {
+          <div className="space-y-2">
+            {TIMELINE_EVENTS.map((event, i) => {
               const Icon = event.icon;
-              const isEven = index % 2 === 0;
-
               return (
-                <div
-                  key={event.year}
-                  className={`flex flex-col md:flex-row relative items-start md:items-center ${
-                    isEven ? "md:flex-row-reverse" : ""
-                  }`}
+                <motion.div
+                  key={event.index}
+                  initial={{ opacity: 0, x: -16 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-60px" }}
+                  transition={{
+                    duration: 0.5,
+                    ease: [0.16, 1, 0.3, 1],
+                    delay: i * 0.08,
+                  }}
+                  className="relative flex items-start gap-5 pl-12"
                 >
-                  {/* Icon Marker */}
-                  <div className="absolute left-0 md:left-1/2 top-1.5 md:top-auto h-10 w-10 rounded-full border border-slate-800 bg-[#0F172A] flex items-center justify-center -translate-x-[20px] md:-translate-x-1/2 z-10 text-blue-500 group">
-                    <Icon className="h-4.5 w-4.5" />
+                  {/* Dot / Icon Marker */}
+                  <div
+                    className={`absolute left-0 top-3.5 w-[38px] h-[38px] rounded-full flex items-center justify-center shrink-0 border transition-colors ${
+                      event.isCurrent
+                        ? "bg-neutral-950 dark:bg-white border-neutral-950 dark:border-white text-white dark:text-black"
+                        : "bg-white dark:bg-neutral-950 border-neutral-200 dark:border-white/10 text-neutral-500 dark:text-neutral-400"
+                    }`}
+                  >
+                    <Icon className="w-4 h-4" />
                   </div>
 
-                  {/* Empty Spacer Column (Desktop) */}
-                  <div className="hidden md:block w-1/2" />
-
-                  {/* Card Content Column */}
-                  <motion.div
-                    initial={{ opacity: 0, x: isEven ? 30 : -30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true, margin: "-80px" }}
-                    transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                    className="w-full md:w-1/2 pl-8 md:pl-12 md:pr-12"
+                  {/* Card */}
+                  <div
+                    className={`w-full mb-2 p-5 rounded-2xl border transition-colors ${
+                      event.isCurrent
+                        ? "bg-neutral-50 dark:bg-neutral-900/60 border-neutral-300 dark:border-white/15"
+                        : "bg-neutral-50/50 dark:bg-transparent border-neutral-200/80 dark:border-white/5"
+                    }`}
                   >
-                    <div className="bg-slate-900/50 backdrop-blur-sm border border-white/5 p-6 rounded-2xl relative">
-                      {/* Triangle Pointer (Desktop only) */}
-                      <div
-                        className={`hidden md:block absolute top-[22px] w-0 h-0 border-y-8 border-y-transparent ${
-                          isEven
-                            ? "right-full border-r-[10px] border-r-slate-800/40"
-                            : "left-full border-l-[10px] border-l-slate-800/40"
-                        }`}
-                      />
-
-                      <span className="text-[10px] font-bold text-blue-400 uppercase tracking-widest block mb-1">
+                    <div className="flex items-center justify-between mb-1.5 gap-3">
+                      <span className="text-[10px] font-mono font-semibold text-neutral-400 dark:text-neutral-500 uppercase tracking-widest">
                         {event.year}
                       </span>
-                      <h4 className="text-md font-bold text-white mb-2 leading-snug tracking-tight">
-                        {event.title}
-                      </h4>
-                      <p className="text-xs text-slate-400 leading-relaxed font-normal">
-                        {event.description}
-                      </p>
+                      <span className="text-[10px] font-mono text-neutral-300 dark:text-neutral-700">
+                        {event.index}
+                      </span>
                     </div>
-                  </motion.div>
-                </div>
+                    <h4 className="text-sm font-bold text-neutral-950 dark:text-white mb-1 leading-snug">
+                      {event.title}
+                      {event.isCurrent && (
+                        <span className="ml-2 inline-flex items-center gap-1 text-[10px] font-mono text-emerald-600 dark:text-emerald-400 font-semibold align-middle">
+                          <span className="w-1 h-1 rounded-full bg-emerald-500 animate-pulse inline-block" />
+                          current
+                        </span>
+                      )}
+                    </h4>
+                    <p className="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                      {event.description}
+                    </p>
+                  </div>
+                </motion.div>
               );
             })}
           </div>
         </div>
+
       </div>
     </section>
   );

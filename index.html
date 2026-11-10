@@ -4,15 +4,32 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#ffffff" />
     
+    <!-- Inline anti-flash script: Defaults to light ("white") unless explicitly saved as dark -->
+    <script>
+      (function() {
+        try {
+          var saved = localStorage.getItem("portfolio-theme");
+          if (saved === "dark") {
+            document.documentElement.classList.add("dark");
+            document.documentElement.classList.remove("light");
+          } else {
+            document.documentElement.classList.remove("dark");
+            document.documentElement.classList.add("light");
+          }
+        } catch(e) {}
+      })();
+    </script>
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     
     <!-- SEO & Metadata -->
-    <title>Carmelino Jadulco — Full-Stack Developer | Next.js & Supabase</title>
-    <meta name="description" content="Full-stack developer building modern web applications with Next.js, Supabase, TypeScript, and React. Clean architecture and tactile user interfaces." />
+    <title>Carmelino Jadulco — Full-Stack Developer</title>
+    <meta name="description" content="Carmelino Jadulco is a full-stack developer engineering high-performance web applications with Next.js, Supabase, TypeScript, and React." />
     <meta name="keywords" content="Carmelino Jadulco, Full-Stack Developer, Next.js, Supabase, TypeScript, React 19, Tailwind CSS, PostgreSQL" />
     
     <meta name="google-site-verification" content="tyab2ThQkmgaq-JOT5pQVspYLFiSYy1CH9HIidZe3bk" />
@@ -21,15 +38,15 @@
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Carmelino Jadulco — Full-Stack Developer | Next.js & Supabase" />
+    <meta property="og:title" content="Carmelino Jadulco — Full-Stack Developer" />
     <meta property="og:description" content="Full-stack developer building modern web applications with Next.js, Supabase, TypeScript, and React." />
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:title" content="Carmelino Jadulco — Full-Stack Developer | Next.js & Supabase" />
+    <meta property="twitter:title" content="Carmelino Jadulco — Full-Stack Developer" />
     <meta property="twitter:description" content="Full-stack developer building modern web applications with Next.js, Supabase, TypeScript, and React." />
   </head>
-  <body class="bg-[#0F172A] text-[#F8FAFC] antialiased selection:bg-blue-500 selection:text-white overflow-x-hidden">
+  <body class="bg-white dark:bg-[#09090b] text-neutral-900 dark:text-[#FAFAFA] antialiased selection:bg-black selection:text-white dark:selection:bg-white dark:selection:text-black overflow-x-hidden">
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
